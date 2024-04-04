@@ -35,8 +35,9 @@ class Server:
 
 	def main(self):
 		self.sock = self.__init_server()
-		client_socket, address = self.sock.accept()
-		Thread(target=self.communicate_user, args=(client_socket, address)).start()
+		while True:
+			client_socket, address = self.sock.accept()
+			Thread(target=self.communicate_user, args=(client_socket, address)).start()
 
 
 server = Server()
